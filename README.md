@@ -23,7 +23,7 @@
 2. Распакуй архив в любую папку.
 3. Запусти **ResolutionPicker.exe**. Установка не требуется.
 
-В архиве находятся программа и инструкция. Версия **1.0.0**. Для Windows; пользовательские режимы NVIDIA требуют установленного драйвера и панели управления NVIDIA.
+В архиве находятся программа и инструкция. Версия **1.0.1**. Для Windows; пользовательские режимы NVIDIA требуют установленного драйвера и панели управления NVIDIA.
 
 ### Что умеет FRAME
 
@@ -57,7 +57,7 @@
 2. Extract the archive into any folder.
 3. Run **ResolutionPicker.exe**. No installation is needed.
 
-The archive contains the app and instructions. Version **1.0.0**. NVIDIA custom modes require an installed NVIDIA driver and NVIDIA Control Panel.
+The archive contains the app and instructions. Version **1.0.1**. NVIDIA custom modes require an installed NVIDIA driver and NVIDIA Control Panel.
 
 ### Features
 
