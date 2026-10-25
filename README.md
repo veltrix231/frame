@@ -5,8 +5,9 @@
 <p align="center"><b>Разрешение экрана и Fortnite в одном окне.</b><br>Display and Fortnite resolution in one place.</p>
 
 <p align="center">
-  <a href="https://github.com/veltrix231/frame/raw/refs/heads/main/downloads/FRAME-portable.zip"><b>⬇ Скачать FRAME для Windows / Download for Windows</b></a>
+  <a href="https://github.com/veltrix231/frame/releases/latest/download/FRAME-portable.zip"><b>⬇ Скачать FRAME для Windows / Download for Windows</b></a>
   <br><br>
+  <a href="https://github.com/veltrix231/frame/releases">Версии / Releases</a> ·
   <a href="https://www.tiktok.com/@lyorefreak">TikTok @lyorefreak</a>
 </p>
 
@@ -18,7 +19,7 @@
 
 ### Скачать и запустить
 
-1. [Скачай FRAME-portable.zip](https://github.com/veltrix231/frame/raw/refs/heads/main/downloads/FRAME-portable.zip).
+1. [Скачай FRAME-portable.zip](https://github.com/veltrix231/frame/releases/latest/download/FRAME-portable.zip).
 2. Распакуй архив в любую папку.
 3. Запусти **ResolutionPicker.exe**. Установка не требуется.
 
@@ -52,7 +53,7 @@
 
 ### Download and run
 
-1. [Download FRAME-portable.zip](https://github.com/veltrix231/frame/raw/refs/heads/main/downloads/FRAME-portable.zip).
+1. [Download FRAME-portable.zip](https://github.com/veltrix231/frame/releases/latest/download/FRAME-portable.zip).
 2. Extract the archive into any folder.
 3. Run **ResolutionPicker.exe**. No installation is needed.
 
