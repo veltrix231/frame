@@ -1,0 +1,86 @@
+name: Publish FRAME download
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'downloads/**'
+      - 'release/**'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frame-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Verify package and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: python
+        run: |
+          import hashlib, json, os, re, urllib.error, urllib.parse, urllib.request
+          repo = os.environ['GITHUB_REPOSITORY']
+          commit = os.environ['GITHUB_SHA']
+          raw = f'https://raw.githubusercontent.com/{repo}/{commit}/'
+          def download(path):
+              with urllib.request.urlopen(raw + path, timeout=30) as response:
+                  return response.read()
+          archive = download('downloads/FRAME-portable.zip')
+          sums = download('downloads/SHA256SUMS.txt')
+          expected, filename = sums.decode('utf-8').strip().split()
+          if filename != 'FRAME-portable.zip' or hashlib.sha256(archive).hexdigest() != expected.lower():
+              raise RuntimeError('Archive checksum verification failed')
+          version = download('release/version.txt').decode('utf-8').strip()
+          if not re.fullmatch(r'\d+\.\d+\.\d+', version):
+              raise RuntimeError('Invalid release version')
+          notes = download('release/NOTES.md').decode('utf-8')
+          def api(url, method='GET', data=None, content_type='application/json'):
+              if isinstance(data, dict):
+                  data = json.dumps(data).encode('utf-8')
+              request = urllib.request.Request(url, data=data, method=method, headers={
+                  'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                  'Accept': 'application/vnd.github+json',
+                  'X-GitHub-Api-Version': '2022-11-28',
+                  'User-Agent': 'FRAME-release',
+                  'Content-Type': content_type,
+              })
+              with urllib.request.urlopen(request, timeout=60) as response:
+                  return json.load(response)
+          base = f'https://api.github.com/repos/{repo}/releases'
+          tag = 'v' + version
+          try:
+              release = api(base + '/tags/' + tag)
+          except urllib.error.HTTPError as error:
+              if error.code != 404:
+                  raise
+              release = api(base, 'POST', {
+                  'tag_name': tag, 'target_commitish': commit, 'name': 'FRAME ' + version,
+                  'body': notes, 'draft': True, 'prerelease': False,
+              })
+          existing = {asset['name']: asset for asset in release['assets']}
+          for name, content, mime in [
+              ('FRAME-portable.zip', archive, 'application/zip'),
+              ('SHA256SUMS.txt', sums, 'text/plain'),
+          ]:
+              digest = 'sha256:' + hashlib.sha256(content).hexdigest()
+              if name in existing:
+                  if existing[name].get('digest') != digest:
+                      raise RuntimeError('A release asset already exists with different content; use a new version')
+                  continue
+              upload = release['upload_url'].split('{', 1)[0] + '?name=' + urllib.parse.quote(name)
+              asset = api(upload, 'POST', content, mime)
+              if asset.get('digest') != digest:
+                  raise RuntimeError('Uploaded asset digest mismatch')
+          if release['draft']:
+              release = api(base + '/' + str(release['id']), 'PATCH', {'draft': False, 'make_latest': 'true'})
+          print('Published: ' + release['html_url'])
