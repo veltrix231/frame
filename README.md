@@ -23,7 +23,7 @@
 2. Распакуй архив в любую папку.
 3. Запусти **ResolutionPicker.exe**. Установка не требуется.
 
-В архиве находятся программа и инструкция. Версия **1.0.1**. Для Windows; пользовательские режимы NVIDIA требуют установленного драйвера и панели управления NVIDIA.
+В архиве находятся программа и инструкция. Версия **1.0.2**. Для Windows; пользовательские режимы NVIDIA требуют установленного драйвера и панели управления NVIDIA.
 
 ### Что умеет FRAME
 
@@ -31,6 +31,7 @@
 - Применять режим рабочего стола с подтверждением: без него старый режим возвращается через 15 секунд.
 - Автоматически находить `GameUserSettings.ini` Fortnite или запоминать выбранный вручную файл.
 - Отдельно записывать выбранное разрешение в конфиг Fortnite и включать для файла «Только чтение» после записи.
+- Показывать над основной светлой кнопкой разрешение, которое сейчас записано в выбранном конфиге.
 - Показывать сохранённые в драйвере кастомные разрешения NVIDIA, открывать создание режима и обновлять список после его сохранения.
 - Показывать пропорции выбранного разрешения и инструкцию по масштабированию во вкладке FAQ.
 - Переключать русский и английский язык с сохранением выбора.
@@ -57,7 +58,7 @@
 2. Extract the archive into any folder.
 3. Run **ResolutionPicker.exe**. No installation is needed.
 
-The archive contains the app and instructions. Version **1.0.1**. NVIDIA custom modes require an installed NVIDIA driver and NVIDIA Control Panel.
+The archive contains the app and instructions. Version **1.0.2**. NVIDIA custom modes require an installed NVIDIA driver and NVIDIA Control Panel.
 
 ### Features
 
@@ -65,6 +66,7 @@ The archive contains the app and instructions. Version **1.0.1**. NVIDIA custom 
 - Apply a desktop mode with a 15-second confirmation and automatic rollback.
 - Detect Fortnite's `GameUserSettings.ini` automatically or remember a manually selected file.
 - Save the resolution to Fortnite separately and enable the file's Read-only attribute after saving.
+- Show the currently saved config resolution above the primary light save button.
 - List saved NVIDIA custom modes, open custom resolution creation and refresh the list after saving in NVIDIA.
 - Preview the selected aspect ratio and find Full-screen scaling instructions in FAQ.
 - Switch between English and Russian without restarting.
